@@ -1,0 +1,186 @@
+net
+{
+	propagationenginegenerator1791944048146838126L = "edu.ucla.belief.approx.BeliefPropagationSettings@5cbf5dfb";
+	recoveryenginegenerator6944530267470113528l = "edu.ucla.util.SettingsImpl@6e1afcd0";
+	node_size = (130.0 55.0);
+	huginenginegenerator3061656038650325130L = "edu.ucla.belief.inference.JoinTreeSettings@627b1af4";
+	rcenginegenerator1317510038576835557L = "edu.ucla.belief.inference.RCSettings@361c4889";
+}
+
+node PotHole
+{
+	states = ("Yes" "No" );
+	position = (472 -84);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable8";
+	label = "Pot Hole";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node MajorRepair
+{
+	states = ("Yes" "No" );
+	position = (668 -144);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable9";
+	label = "Major Repair";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node RushHour
+{
+	states = ("Yes" "No" );
+	position = (551 -507);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable3";
+	label = "Rush Hour";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node Interstate
+{
+	states = ("Yes" "No" );
+	position = (704 -328);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable12";
+	label = "Interstate";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node Traffic
+{
+	states = ("Light" "LightModerate" "Moderate" "Heavy" );
+	position = (215 -485);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable6";
+	label = "Traffic";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node Fog
+{
+	states = ("Yes" "No" );
+	position = (256 -80);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable1";
+	label = "Fog";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node RoadWork
+{
+	states = ("Yes" "No" );
+	position = (472 -226);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable7";
+	label = "Road Work";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node Weather
+{
+	states = ("Good" "Bad" );
+	position = (215 -243);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable2";
+	label = "Weather";
+	EXCLUDE_FROM_SENSITIVITY = "[Precipitation=Yes;Fog=Yes][Precipitation=Yes;Fog=No][Precipitation=No;Fog=Yes][Precipitation=No;Fog=No]";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node TrafficJam
+{
+	states = ("Yes" "No" );
+	position = (502 -381);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable10";
+	label = "Traffic Jam";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node Precipitation
+{
+	states = ("Yes" "No" );
+	position = (69 -81);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable0";
+	label = "Precipitation";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+potential ( PotHole | )
+{
+	data = (	0.9799	0.0201	);
+}
+potential ( MajorRepair | )
+{
+	data = (	0.55	0.45	);
+}
+potential ( RushHour | )
+{
+	data = (	0.0833	0.9167	);
+}
+potential ( Interstate | )
+{
+	data = (	0.079	0.921	);
+}
+potential ( Traffic | Weather TrafficJam )
+{
+	data = (((	0.0075	0.2675	0.275	0.45	)
+		(	0.275	0.45	0.2675	0.0075	))
+		((	0.03	0.04	0.25	0.68	)
+		(	0.025	0.075	0.1	0.8	)));
+}
+potential ( Fog | )
+{
+	data = (	0.2521	0.7479	);
+}
+potential ( RoadWork | PotHole MajorRepair )
+{
+	data = (((	0.9999	1.0E-4	)
+		(	0.0735	0.9265	))
+		((	0.9815	0.0185	)
+		(	0.0015	0.9985	)));
+}
+potential ( Weather | Precipitation Fog )
+{
+	data = (((	0.6782	0.3218	)
+		(	0.9304	0.0696	))
+		((	0.2286	0.7714	)
+		(	0.9765	0.0235	)));
+}
+potential ( TrafficJam | RushHour RoadWork Interstate )
+{
+	data = ((((	0.9941	0.0059	)
+		(	0.0059	0.9941	))
+		((	0.920949	0.079051	)
+		(	0.779442	0.220558	)))
+		(((	0.920949	0.079051	)
+		(	0.220558	0.779442	))
+		((	0.220558	0.779442	)
+		(	0.079051	0.920949	))));
+}
+potential ( Precipitation | )
+{
+	data = (	0.0931	0.9069	);
+}
